@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function EventsGrid() {
   const [onMouse, setOnmouse] = useState(false);
@@ -28,38 +30,40 @@ export default function EventsGrid() {
         onMouseLeave={mouseLeave}
         className="col-span-full cursor-pointer md:col-span-2 relative overflow-hidden bg-gradient-to-r from-blue-500 to-blue-600"
       >
-        <motion.div
-          className="text-white"
-          initial={{ scale: 1 }}
-          animate={{ scale: onMouse && card == 1 ? 1.05 : 1 }}
-          transition={{ duration: 0.3 }}
-        >
-          <div className="flex flex-col justify-between md:flex-row items-center p-6 md:p-8">
-            {/* Text Section */}
+        <Link href={"/event"}>
+          <motion.div
+            className="text-white"
+            initial={{ scale: 1 }}
+            animate={{ scale: onMouse && card == 1 ? 1.05 : 1 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="flex flex-col justify-between md:flex-row items-center p-6 md:p-8">
+              {/* Text Section */}
 
-            <div className="text-white">
-              <h2 className="text-5xl font-bold">Хүүхдийн</h2>
-              <h3 className="text-3xl font-bold">Төрсөн өдрийн</h3>
-              <p className="mt-2">ЦОГЦ ҮЙЛЧИЛГЭЭ</p>
+              <div className="text-white">
+                <h2 className="text-5xl font-bold">Хүүхдийн</h2>
+                <h3 className="text-3xl font-bold">Төрсөн өдрийн</h3>
+                <p className="mt-2">ЦОГЦ ҮЙЛЧИЛГЭЭ</p>
+              </div>
+              <Button
+                variant="secondary"
+                className="bg-white text-blue-600 hover:bg-gray-100"
+              >
+                Эвент үүсгэх
+              </Button>
+
+              {/* Image Section */}
+
+              <Image
+                src="/flower.png"
+                alt="Wedding bouquet"
+                width={500}
+                height={400}
+                className="rounded-lg object-cover"
+              />
             </div>
-            <Button
-              variant="secondary"
-              className="bg-white text-blue-600 hover:bg-gray-100"
-            >
-              Эвент үүсгэх
-            </Button>
-
-            {/* Image Section */}
-
-            <Image
-              src="/flower.png"
-              alt="Wedding bouquet"
-              width={500}
-              height={400}
-              className="rounded-lg object-cover"
-            />
-          </div>
-        </motion.div>
+          </motion.div>
+        </Link>
       </Card>
 
       {/* Regular Cards */}
